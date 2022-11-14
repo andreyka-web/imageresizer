@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="imgDropBox">
+        <img src="./download.png" width="64px" height="64px" alt="load" />
+        <p>Drop your Jpeg, Png or WebP images here!</p>
+      </div>
+
+      <div class="imgList">
+        <div class="imgBox" id="imgBox">
+          <figure>
+            <img src="" width="" height="" />
+            <figcaption class="date"></figcaption>
+          </figure>
+          <div class="config">
+            <div class="size">
+              <span>size:</span>
+              <input type="range" value="50%" name="s" />
+              <div class="fieldbox">
+              <input type="number" name="width" min="0" max="" step="1" />
+              &times;
+              <input type="number" name="height" min="0" max="" step="1" />
+              px
+              </div>
+            </div>
+            <div class="quality">
+              <span>quality:</span>
+              <input type="range" value="60%" name="q" />
+              <div class="fieldbox">
+              <input type="number" name="quality" min="0" max="100" step="1" />
+              %
+              </div>
+            </div>
+          </div>
+          <div>
+            <a name="download" class="download">Download</a>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <h1>Image Resizer</h1>
+        <p>Easy to use and safe image resizing web app.</p>
+      </footer>
+    </div>
+    <script src="./app.js" defer></script>
+  </body>
+</html>
