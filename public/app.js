@@ -50,8 +50,8 @@
         w = bitmap.width;
         h = bitmap.height;
 
-        img.width = w >= h ? side : (side * w) / h;
-        img.height = h >= w ? side : (side * h) / w;
+        img.width = w >= h ? side : side * w / h;
+        img.height = h >= w ? side : side * h / w;
         img.onload = () => {
             setDimentions(row, w, h);
             setQuality(row, q);
@@ -64,14 +64,14 @@
  
       // TODO:   row.querySelector('figcaption.date').innerText = `${new Date().toJSON()}`;
       // ? file index and name
-      console.log(i, file);
+      console.log(i, file, file.name.split('.').pop());
 
       // on resize by range
-      row.querySelector(".size input").addEventListener(
+      row.querySelector("input[name=s]").addEventListener(
         "change",
         (e) => {
-          let s = row.querySelector("input[name=s]").value;
-          setDimentions(row, (w * s) / 100, (h * s) / 100, s);
+          let s = e.currentTarget.value;
+          setDimentions(row, w * s / 100, h * s / 100, s);
         },
         false
       );
@@ -80,9 +80,9 @@
       winp.addEventListener(
         "change",
         (e) => {
-          let w = winp.value <= winp.max ? winp.value : winp.max;
-          let s = w / winp.max * 100;
-          let h = hinp.max * s / 100;
+          let w = (parseInt(winp.value) <= parseInt(winp.max)) ? parseInt(winp.value) : parseint(winp.max);
+          let s = w / parseInt(winp.max) * 100;
+          let h = parseInt(hinp.max) * s / 100;
           setDimentions(row, w, h, s);
         },
         false
@@ -92,9 +92,9 @@
       hinp.addEventListener(
         "change",
         (e) => {
-          let h = hinp.value <= hinp.max ? hinp.value : hinp.max;
-          let s = h / hinp.max * 100;
-          let w = winp.max * s / 100;
+          let h = (parseInt(hinp.value) <= parseInt(hinp.max)) ? parseInt(hinp.value) : parseInt(hinp.max);
+          let s = h / parseInt(hinp.max) * 100;
+          let w = parseInt(winp.max) * s / 100;
           setDimentions(row, w, h, s);          
         },
         false
@@ -102,15 +102,15 @@
 
       // qality change
       row.querySelectorAll('input[name^="q"]').forEach(item => { 
-        item.addEventListener("change", (e) => setQuality(row, e.currentTarget.value) );
+        item.addEventListener("change", (e) => setQuality(row, parseInt(e.currentTarget.value)) );
       }); 
 
       // download
       row.querySelector('a.download').addEventListener('click', (e) => {
         let ctx = canvas.getContext('2d');
-        let w = winp.value;
-        let h = hinp.value;
-        setCanvasSize(canvas, w, h)
+        let w = parseInt(winp.value);
+        let h = parseInt(hinp.value);
+        setCanvasSize(canvas, w, h);
         ctx.drawImage(img, 0, 0, w, h);
         e.currentTarget.href = canvas.toDataURL('image/jpeg', q);
         e.currentTarget.download = `${Date.now()}-${w}x${h}-${q}.jpg`;
@@ -118,12 +118,11 @@
     });
   }
 
-  function setDimentions(row, w, h, s) {
+  function setDimentions(row, w, h, s) { 
     s = s || 100;
     row.querySelector("input[name=width]").value = w;
     row.querySelector("input[name=height]").value = h;
-    row.querySelector("input[name=s]").value = s;
-    console.log(`w = ${w}, h = ${h}, s = ${s}`);
+    row.querySelector("input[name=s]").value = s; 
   }
 
   function setCanvasSize(canvas, w, h){
@@ -134,7 +133,6 @@
   function setQuality(row, q) {
     q = q || 100;
     row.querySelector("input[name=q]").value = q;
-    row.querySelector("input[name=quality]").value = q;
-    console.log(`quality = ${q}`);
+    row.querySelector("input[name=quality]").value = q; 
   }
 })();

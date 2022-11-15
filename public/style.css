@@ -4,7 +4,7 @@
 }
 
 .container {
-    max-width: 1024px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
@@ -21,7 +21,14 @@
 #imgDropBox:hover {
     background-color:var(--light-grey);
 }
-
+#imgDropBox img {
+    margin-bottom: 3px;
+    transition-duration: 0.3s;
+}
+#imgDropBox:hover img {
+    margin-top: 3px;
+    margin-bottom: 0;
+}
 #imgBox {display: none; }
 
 .imgList {
