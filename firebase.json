@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "tinyimg-85338",
     "public": "public",
     "ignore": [
       "firebase.json",
