@@ -1,93 +1,183 @@
 :root {
-    --grey: #bcbcbc;
-    --light-grey: #efefef;
+  --grey: #cfd8dc;
+  --light-grey: #eceff1;
+  --base: #607d8b;
+  --secondary: #455A64;
+}
+
+body {
+  background-color: #eceff1;
+  font-size: 15px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 15rem;
+  border:none;
+}
+/***** Track Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-runnable-track {
+  background: var(--grey);
+  height: 0.5rem;
+  border-radius: .3rem;
+}
+
+/******** Firefox ********/
+input[type="range"]::-moz-range-track {
+  background: var(--grey);
+  height: 0.5rem;
+}
+/***** Thumb Styles *****/
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -.25rem; /* Centers thumb on the track */
+  background-color: var(--base);
+  height: 1rem;
+  width: 1rem;
+  border-radius: .5rem;
+}
+/***** Thumb Styles *****/
+/***** Firefox *****/
+input[type="range"]::-moz-range-thumb {
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 0; /*Removes default border-radius that FF applies*/
+  background-color: var(--base);
+  height: 2rem;
+  width: 1rem;
+}
+
+/***** Focus Styles *****/
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/***** Chrome, Safari, Opera, and Edge Chromium *****/
+input[type="range"]:focus::-webkit-slider-thumb {
+  border: 1px solid #053a5f;
+  outline: 3px solid #053a5f;
+  outline-offset: 0.125rem;
+}
+
+/******** Firefox ********/
+input[type="range"]:focus::-moz-range-thumb {
+  border: 1px solid var(--base);
+  outline: 3px solid var(--base);
+  outline-offset: 0.125rem;
 }
 
 .container {
-    max-width: 900px;
-    margin: 0 auto;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 #imgDropBox {
-    width: 400px;
-    padding: 2rem;
-    border: 2px dashed var(--grey);
-    margin: 1em auto;
-    border-radius: 1em;
-    color: var(--grey);
-    text-align: center;
-    cursor: pointer;
+  width: 400px;
+  padding: 2rem;
+  border: 3px dashed var(--base);
+  margin: 1em auto;
+  border-radius: 1em;
+  color: var(--base);
+  text-align: center;
+  cursor: pointer;
 }
 #imgDropBox:hover {
-    background-color:var(--light-grey);
+  background-color: var(--grey);
 }
 #imgDropBox img {
-    margin-bottom: 3px;
-    transition-duration: 0.3s;
+    margin-bottom: 1em;
 }
-#imgDropBox:hover img {
-    margin-top: 3px;
-    margin-bottom: 0;
+#imgBox {
+  display: none;
 }
-#imgBox {display: none; }
 
 .imgList {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .imgBox {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
+  background: #fff;
+  margin-bottom: 0.5rem;
+  border-radius: 1rem;
+  align-items: center;
+  border: 1px solid var(--grey);
 }
 .imgBox figure {
-    margin-top: 0;
+    margin: 0 1.5em 1em 1.5em;
+  display: flex;
+  flex-direction: column;
+  flex-basis: 10%;
+}
+.imgBox .date {
+  color: var(--base);
+  font-size: 0.8em;
 }
 .imgBox .config {
-    width: 90%;
+  width: 84%;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
 }
 .imgBox .config span {
-    width: 75px; 
+  width: 75px;
 }
 
 .config .size,
 .config .quality {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
 }
-.config .size input[type='range'],
-.config .quality input[type='range'] {
-    display: flex;
-    flex-grow: 2;
-    flex-basis: 50%;
-    cursor: pointer;
+.config .size input[type="range"],
+.config .quality input[type="range"] {
+  display: flex;
+  flex-grow: 2;
+  flex-basis: 50%;
+  cursor: pointer;
+  color: var(--base);
 }
 .config .size .fieldbox,
 .config .quality .fieldbox {
-    flex-grow: 1;
-    flex-basis: 25%;
+  flex-grow: 1;
+  flex-basis: 30%;
+  padding-left: 1em;
 }
 
 input {
-    border: 1px solid var(--grey);
+  border: 1px solid var(--light-grey);
+  /* border-bottom-color: var(--grey); */
 }
 
 a.download {
-    padding: 0.5rem;
-    cursor: pointer;
-    border: 1px solid var(--grey);
-    background-color: var(--light-grey);
-    text-decoration: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 1px solid var(--grey);
+  background-color: var(--light-grey);
+  color: var(--base);
+  text-decoration: none;
 }
 a.download:hover {
-    background-color: var(--grey);
-    color: var(--light-grey);
+  background-color: var(--base);
+  color: var(--light-grey);
+  border-color: var(--base);
 }
-a.download:active, a.download:visited { 
-    color: var(--grey);
+a.download:active,
+a.download:visited {
+  color: var(--grey);
 }
